@@ -32,7 +32,9 @@ int _main(struct thread *td) {
   close(fd);
 
   float fahrenheit = ((THRESHOLDTEMP * 9) / 5) + 32;
-  printf_notification("Fan Threshold Set to %i°C/%i°F!", THRESHOLDTEMP, (int)fahrenheit);
+  char fw_version[6] = {0};
+  get_firmware_string(fw_version);
+  printf_notification("Fan Threshold Set to %i°C/%i°F!\nPS4 Firmware %s", THRESHOLDTEMP, (int)fahrenheit, fw_version);
 
 #ifdef DEBUG_SOCKET
   printf_debug("Closing socket...\n");
